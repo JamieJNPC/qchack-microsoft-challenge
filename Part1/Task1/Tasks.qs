@@ -20,8 +20,37 @@ namespace QCHack.Task1 {
     // Example: the result of applying the oracle to a state (|001⟩ + |100⟩ + |111⟩)/√3 ⊗ |0⟩
     // will be 1/√3|001⟩ ⊗ |1⟩ + 1/√3|100⟩ ⊗ |0⟩ + 1/√3|111⟩ ⊗ |0⟩.
     //
-    operation Task1_DivisibleByFour (inputs : Qubit[], output : Qubit) : Unit is Adj+Ctl {
-        // ...
+   operation Task1_DivisibleByFour (inputs : Qubit[], output : Qubit) : Unit is Adj+Ctl {
+        let PatternZero = ControlledOnBitString([false,false,false],X);
+        let PatternOne = ControlledOnBitString([false, false, true], X);
+        let PatternThree = ControlledOnBitString([false, false, false, true], X);
+        let PatternFive = ControlledOnBitString([true, false, false, false], X);
+        let PatternSix = ControlledOnBitString([true, true, false, false], X);
+        let PatternSeven = ControlledOnBitString([false, false, false,false, true], X);
+        let PatternNine = ControlledOnBitString([false, true, false, false, false], X);
+        let PatternTen = ControlledOnBitString([false, true, true, false, false], X);
+        let PatternEleven = ControlledOnBitString([true, false, false, false, false], X);
+        let PatternTwelve = ControlledOnBitString([true, false, true, false, false], X);
+        let PatternThirteen = ControlledOnBitString([true, true, false, false, false], X);
+        let PatternFourteen = ControlledOnBitString([true, true, true, false, false], X);
+        if(Length(inputs)==3){
+        PatternZero(inputs,output);
+        PatternOne(inputs, output);
+        }
+        elif(Length(inputs)==4){
+        PatternThree(inputs, output);
+        PatternFive(inputs, output);
+        PatternSix(inputs, output);
+        }
+        else{
+        PatternSeven(inputs, output);
+        PatternNine(inputs, output);
+        PatternTen(inputs, output);
+        PatternEleven(inputs, output);
+        PatternTwelve(inputs, output);
+        PatternThirteen(inputs, output);
+        PatternFourteen(inputs, output);
+        }
     }
 }
 
